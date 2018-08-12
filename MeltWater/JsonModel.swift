@@ -13,8 +13,8 @@ struct JsonModel : Codable {
     let description : String?
     let comments: Int?
     let created_at : String?
-    let owner : Owner?
-    let files: File?
+    let owner : Owner? // Parse nested object key
+    let files: File? // Parse nested object key
     
     
     init(from decoder: Decoder) throws {
@@ -56,7 +56,7 @@ struct File : Codable {
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CustomCodingKeys.self)
-        self.filename = values.allKeys[0].stringValue
+        self.filename = values.allKeys[0].stringValue // Getting first object key name for first file
     }
 }
 
